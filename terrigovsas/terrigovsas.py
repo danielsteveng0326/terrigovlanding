@@ -13,7 +13,7 @@ colors = {
 
 # Configuración de la aplicación
 config = rx.Config(
-    app_name="terrigo_landing",
+    app_name="terrigov_landing",
     tailwind={
         "theme": {
             "extend": {
@@ -34,13 +34,13 @@ def navbar() -> rx.Component:
             rx.hstack(
                 rx.image(
                     src="/logo.png",
-                    alt="Terrigo Logo",
+                    alt="Terrigov Logo",
                     width="50px",
                     height="50px"
                 ),
                 rx.vstack(
                     rx.text(
-                        "Terrigo S.A.S.",
+                        "TerriGov S.A.S.",
                         size="6",
                         weight="bold",
                         color=colors["dark"]
@@ -121,7 +121,7 @@ def hero_section() -> rx.Component:
                         },
                         transition="all 0.3s ease"
                     ),
-                    href="https://wa.me/573001234567",
+                    href="https://wa.me/573207803362",
                     is_external=True
                 ),
                 spacing="6",
@@ -266,7 +266,7 @@ def about_section() -> rx.Component:
                         margin_bottom="2rem"
                     ),
                     rx.text(
-                        "Terrigo S.A.S. es una empresa líder en transformación digital para el sector público, "
+                        "TerriGov S.A.S. es una empresa líder en transformación digital para el sector público, "
                         "formando parte de la alianza estratégica con UnityGov y CiviData. Nos especializamos "
                         "en crear soluciones tecnológicas innovadoras que optimizan la gestión territorial.",
                         size="4",
@@ -391,14 +391,14 @@ def contact_section() -> rx.Component:
                     rx.vstack(
                         rx.icon("mail", size=30, color=colors["accent"]),
                         rx.text("Email", size="4", weight="bold", color=colors["light"]),
-                        rx.text("contacto@terrigo.com", size="3", color=colors["light"], opacity="0.8"),
+                        rx.text("info@terrigov.co", size="3", color=colors["light"], opacity="0.8"),
                         spacing="2",
                         align="center"
                     ),
                     rx.vstack(
                         rx.icon("message-circle", size=30, color=colors["accent"]),
                         rx.text("WhatsApp", size="4", weight="bold", color=colors["light"]),
-                        rx.text("+57 300 123 4567", size="3", color=colors["light"], opacity="0.8"),
+                        rx.text("+57 320 780 3362", size="3", color=colors["light"], opacity="0.8"),
                         spacing="2",
                         align="center"
                     ),
@@ -435,7 +435,7 @@ def contact_section() -> rx.Component:
                         },
                         transition="all 0.3s ease"
                     ),
-                    href="https://wa.me/573001234567",
+                    href="https://wa.me/573207803362",
                     is_external=True
                 ),
                 
@@ -456,7 +456,7 @@ def footer() -> rx.Component:
             rx.vstack(
                 rx.hstack(
                     rx.text(
-                        "© 2024 Terrigo S.A.S. - Innovación y Desarrollo para el Territorio",
+                        "© 2023 TerriGov S.A.S. - Innovación y Desarrollo para el Territorio",
                         size="3",
                         color=colors["gray"]
                     ),
