@@ -33,10 +33,9 @@ def navbar() -> rx.Component:
             # Logo y nombre de la empresa
             rx.hstack(
                 rx.image(
-                    src="/logo.png",
-                    alt="Terrigov Logo",
-                    width="50px",
-                    height="50px"
+                    src="https://i.postimg.cc/PJgFKg6x/Icon-2-SVG.png",
+                    alt="Logo de la empresa",
+                    width="200px"
                 ),
                 rx.vstack(
                     rx.text(
