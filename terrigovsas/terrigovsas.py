@@ -35,7 +35,7 @@ def navbar() -> rx.Component:
                 rx.image(
                     src="https://i.postimg.cc/PJgFKg6x/Icon-2-SVG.png",
                     alt="Logo de la empresa",
-                    width="200px"
+                    width="50px"
                 ),
                 rx.vstack(
                     rx.text(
