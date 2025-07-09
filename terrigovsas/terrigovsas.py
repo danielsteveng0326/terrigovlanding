@@ -211,8 +211,8 @@ def services_section() -> rx.Component:
             "icon": "cpu"
         },
         {
-            "title": "Integración de Plataformas",
-            "description": "Conectamos CiviData, UnityGov y TerriGov para un ecosistema digital completo.",
+            "title": "Equipamiento Tecnológico",
+            "description": "Computadores, servidores, redes y toda la tecnología necesaria para tu transformación digital.",
             "icon": "network"
         }
     ]
@@ -266,7 +266,7 @@ def about_section() -> rx.Component:
                     ),
                     rx.text(
                         "TerriGov S.A.S. es una empresa líder en transformación digital para el sector público, "
-                        "formando parte de la alianza estratégica con UnityGov y CiviData. Nos especializamos "
+                        "formando parte de la alianza estratégica con el Territorio. Nos especializamos "
                         "en crear soluciones tecnológicas innovadoras que optimizan la gestión territorial.",
                         size="4",
                         color=colors["gray"],
@@ -334,12 +334,13 @@ def about_section() -> rx.Component:
                 # Columna derecha - Imagen destacada
                 rx.box(
                     rx.box(
-                        rx.vstack(
-                            rx.icon("map", size=60, color=colors["primary"]),
-                            rx.text("Territorio Digital", size="5", weight="bold", color=colors["dark"]),
-                            rx.text("Visualización de datos territoriales", size="3", color=colors["gray"]),
-                            spacing="3",
-                            align="center"
+                        rx.image(
+                            src="https://i.postimg.cc/5yWfQRwB/Imagen-Terrigov.png",
+                            alt="TerriGov - Territorio Digital",
+                            width="450px",
+                            height="450px",
+                            object_fit="contain",
+                            border_radius="8px"
                         ),
                         padding="3rem",
                         background=f"linear-gradient(135deg, {colors['primary']}10, {colors['secondary']}10)",
@@ -466,7 +467,7 @@ def footer() -> rx.Component:
                             _hover={"color": colors["primary"]}
                         ),
                         rx.link(
-                            rx.icon("github", size=20, color=colors["gray"]),
+                            rx.icon("instagram", size=20, color=colors["gray"]),
                             href="#",
                             _hover={"color": colors["primary"]}
                         ),
