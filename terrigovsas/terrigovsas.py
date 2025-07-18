@@ -27,7 +27,7 @@ config = rx.Config(
 )
 
 def navbar() -> rx.Component:
-    """Componente de navegación principal"""
+    """Componente de navegación principal - Ahora responsive"""
     return rx.box(
         rx.hstack(
             # Logo y nombre de la empresa
@@ -35,36 +35,44 @@ def navbar() -> rx.Component:
                 rx.image(
                     src="https://i.postimg.cc/PJgFKg6x/Icon-2-SVG.png",
                     alt="Logo de la empresa",
-                    width="50px"
+                    width=["40px", "45px", "50px"]  # Responsive: móvil, tablet, desktop
                 ),
                 rx.vstack(
                     rx.text(
                         "TerriGov S.A.S.",
-                        size="6",
+                        size=["4", "5", "6"],  # Responsive text size
                         weight="bold",
                         color=colors["dark"]
                     ),
                     rx.text(
                         "Innovación y Desarrollo para el Territorio",
-                        size="2",
+                        size=["1", "2", "2"],  # Responsive text size
                         color=colors["gray"],
-                        font_style="italic"
+                        font_style="italic",
+                        display=["none", "block", "block"]  # Oculto en móvil
                     ),
                     spacing="1",
                     align="start"
                 ),
-                spacing="4",
+                spacing=["2", "3", "4"],  # Responsive spacing
                 align="center"
             ),
             
-            # Menú de navegación
+            # Menú de navegación - Responsive
             rx.hstack(
-                rx.link("Inicio", href="#inicio", color=colors["dark"], _hover={"color": colors["primary"]}),
-                rx.link("Servicios", href="#servicios", color=colors["dark"], _hover={"color": colors["primary"]}),
-                rx.link("Sobre Nosotros", href="#sobre-nosotros", color=colors["dark"], _hover={"color": colors["primary"]}),
-                rx.link("Contacto", href="#contacto", color=colors["dark"], _hover={"color": colors["primary"]}),
-                spacing="6",
-                display=["none", "none", "flex"]
+                rx.link("Inicio", href="#inicio", color=colors["dark"], _hover={"color": colors["primary"]}, size=["2", "3", "3"]),
+                rx.link("Servicios", href="#servicios", color=colors["dark"], _hover={"color": colors["primary"]}, size=["2", "3", "3"]),
+                rx.link("Sobre Nosotros", href="#sobre-nosotros", color=colors["dark"], _hover={"color": colors["primary"]}, size=["2", "3", "3"]),
+                rx.link("Contacto", href="#contacto", color=colors["dark"], _hover={"color": colors["primary"]}, size=["2", "3", "3"]),
+                spacing=["2", "4", "6"],  # Responsive spacing
+                display=["none", "none", "flex"]  # Oculto en móvil y tablet pequeño
+            ),
+            
+            # Menú hamburguesa para móvil (placeholder)
+            rx.box(
+                rx.icon("menu", size=24, color=colors["dark"]),
+                display=["block", "block", "none"],  # Visible solo en móvil/tablet
+                cursor="pointer"
             ),
             
             justify="between",
@@ -72,7 +80,7 @@ def navbar() -> rx.Component:
             width="100%"
         ),
         background=colors["light"],
-        padding="1rem 2rem",
+        padding=["0.5rem 1rem", "0.75rem 1.5rem", "1rem 2rem"],  # Responsive padding
         box_shadow="0 2px 4px rgba(0,0,0,0.1)",
         position="sticky",
         top="0",
@@ -80,13 +88,13 @@ def navbar() -> rx.Component:
     )
 
 def hero_section() -> rx.Component:
-    """Sección hero principal"""
+    """Sección hero principal - Responsive"""
     return rx.box(
         rx.container(
             rx.vstack(
                 rx.heading(
                     "Transformamos Territorios con Tecnología",
-                    size="9",
+                    size=["6", "8", "9"],  # Responsive heading size
                     color=colors["light"],
                     text_align="center",
                     font_weight="bold",
@@ -94,7 +102,7 @@ def hero_section() -> rx.Component:
                 ),
                 rx.text(
                     "Soluciones inteligentes para la gestión pública",
-                    size="5",
+                    size=["3", "4", "5"],  # Responsive text size
                     color=colors["light"],
                     text_align="center",
                     opacity="0.9"
@@ -102,13 +110,13 @@ def hero_section() -> rx.Component:
                 rx.link(
                     rx.button(
                         rx.hstack(
-                            rx.icon("message-circle", size=20),
-                            rx.text("Habla con nosotros por WhatsApp", size="4", weight="medium"),
+                            rx.icon("message-circle", size=[16, 18, 20]),  # Responsive icon size
+                            rx.text("Habla con nosotros por WhatsApp", size=["3", "3", "4"], weight="medium"),
                             spacing="2",
                             align="center"
                         ),
-                        size="4",
-                        padding="1rem 2rem",
+                        size=["3", "3", "4"],  # Responsive button size
+                        padding=["0.75rem 1.5rem", "0.875rem 1.75rem", "1rem 2rem"],  # Responsive padding
                         background=colors["accent"],
                         color=colors["light"],
                         border="none",
@@ -123,9 +131,9 @@ def hero_section() -> rx.Component:
                     href="https://wa.me/573207803362",
                     is_external=True
                 ),
-                spacing="6",
+                spacing=["4", "5", "6"],  # Responsive spacing
                 align="center",
-                padding="4rem 2rem"
+                padding=["2rem 1rem", "3rem 1.5rem", "4rem 2rem"]  # Responsive padding
             ),
             max_width="1200px"
         ),
@@ -149,28 +157,28 @@ def hero_section() -> rx.Component:
     )
 
 def service_card(title: str, description: str, icon: str) -> rx.Component:
-    """Componente de tarjeta de servicio"""
+    """Componente de tarjeta de servicio - Responsive"""
     return rx.box(
         rx.vstack(
             rx.box(
-                rx.icon(icon, size=40, color=colors["primary"]),
-                padding="1rem",
+                rx.icon(icon, size=[28, 35, 40], color=colors["primary"]),  # Responsive icon size
+                padding=["0.75rem", "0.875rem", "1rem"],  # Responsive padding
                 background=f"linear-gradient(135deg, {colors['primary']}15, {colors['secondary']}15)",
                 border_radius="50%",
-                margin_bottom="1rem"
+                margin_bottom=["0.75rem", "0.875rem", "1rem"]  # Responsive margin
             ),
-            rx.heading(title, size="5", color=colors["dark"], text_align="center"),
+            rx.heading(title, size=["4", "4", "5"], color=colors["dark"], text_align="center"),  # Responsive heading
             rx.text(
                 description,
-                size="3",
+                size=["2", "3", "3"],  # Responsive text size
                 color=colors["gray"],
                 text_align="center",
                 line_height="1.5"
             ),
-            spacing="3",
+            spacing=["2", "2", "3"],  # Responsive spacing
             align="center"
         ),
-        padding="2rem",
+        padding=["1.5rem", "1.75rem", "2rem"],  # Responsive padding
         background=colors["light"],
         border_radius="12px",
         box_shadow="0 4px 20px rgba(0,0,0,0.1)",
@@ -183,7 +191,7 @@ def service_card(title: str, description: str, icon: str) -> rx.Component:
     )
 
 def services_section() -> rx.Component:
-    """Sección de servicios"""
+    """Sección de servicios - Responsive"""
     services = [
         {
             "title": "Observatorios de Datos",
@@ -222,14 +230,14 @@ def services_section() -> rx.Component:
             rx.vstack(
                 rx.heading(
                     "Nuestros Servicios",
-                    size="8",
+                    size=["6", "7", "8"],  # Responsive heading
                     color=colors["dark"],
                     text_align="center",
                     margin_bottom="1rem"
                 ),
                 rx.text(
                     "Ofrecemos soluciones tecnológicas integrales para la modernización del sector público",
-                    size="4",
+                    size=["3", "3", "4"],  # Responsive text
                     color=colors["gray"],
                     text_align="center",
                     margin_bottom="3rem"
@@ -237,22 +245,22 @@ def services_section() -> rx.Component:
                 rx.grid(
                     *[service_card(service["title"], service["description"], service["icon"]) 
                       for service in services],
-                    columns="3",
-                    spacing="6",
+                    columns=["1", "2", "3"],  # Responsive grid: 1 columna en móvil, 2 en tablet, 3 en desktop
+                    spacing=["4", "5", "6"],  # Responsive spacing
                     width="100%"
                 ),
-                spacing="6",
+                spacing=["4", "5", "6"],  # Responsive spacing
                 align="center"
             ),
             max_width="1200px",
-            padding="4rem 2rem"
+            padding=["2rem 1rem", "3rem 1.5rem", "4rem 2rem"]  # Responsive padding
         ),
         id="servicios",
         background="#F8F9FA"
     )
 
 def about_section() -> rx.Component:
-    """Sección sobre nosotros"""
+    """Sección sobre nosotros - Responsive"""
     return rx.box(
         rx.container(
             rx.grid(
@@ -260,7 +268,7 @@ def about_section() -> rx.Component:
                 rx.vstack(
                     rx.heading(
                         "Sobre Nosotros",
-                        size="8",
+                        size=["6", "7", "8"],  # Responsive heading
                         color=colors["dark"],
                         margin_bottom="2rem"
                     ),
@@ -268,7 +276,7 @@ def about_section() -> rx.Component:
                         "TerriGov S.A.S. es una empresa líder en transformación digital para el sector público, "
                         "formando parte de la alianza estratégica con el Territorio. Nos especializamos "
                         "en crear soluciones tecnológicas innovadoras que optimizan la gestión territorial.",
-                        size="4",
+                        size=["3", "3", "4"],  # Responsive text
                         color=colors["gray"],
                         line_height="1.6",
                         margin_bottom="2rem"
@@ -276,11 +284,11 @@ def about_section() -> rx.Component:
                     
                     # Valores
                     rx.vstack(
-                        rx.heading("Nuestra Visión", size="5", color=colors["primary"]),
+                        rx.heading("Nuestra Visión", size=["4", "4", "5"], color=colors["primary"]),  # Responsive heading
                         rx.text(
                             "Ser el aliado tecnológico de los territorios, impulsando la innovación "
                             "y la eficiencia en la gestión pública a través de soluciones digitales.",
-                            size="3",
+                            size=["2", "3", "3"],  # Responsive text
                             color=colors["gray"],
                             line_height="1.5"
                         ),
@@ -292,39 +300,40 @@ def about_section() -> rx.Component:
                     rx.hstack(
                         rx.vstack(
                             rx.box(
-                                rx.icon("lightbulb", size=24, color=colors["accent"]),
+                                rx.icon("lightbulb", size=[18, 20, 24], color=colors["accent"]),  # Responsive icon
                                 padding="0.5rem",
                                 background=f"{colors['accent']}20",
                                 border_radius="8px"
                             ),
-                            rx.text("Innovación", size="3", weight="bold", color=colors["dark"]),
+                            rx.text("Innovación", size=["2", "2", "3"], weight="bold", color=colors["dark"]),  # Responsive text
                             align="center",
                             spacing="2"
                         ),
                         rx.vstack(
                             rx.box(
-                                rx.icon("eye", size=24, color=colors["accent"]),
+                                rx.icon("eye", size=[18, 20, 24], color=colors["accent"]),  # Responsive icon
                                 padding="0.5rem",
                                 background=f"{colors['accent']}20",
                                 border_radius="8px"
                             ),
-                            rx.text("Transparencia", size="3", weight="bold", color=colors["dark"]),
+                            rx.text("Transparencia", size=["2", "2", "3"], weight="bold", color=colors["dark"]),  # Responsive text
                             align="center",
                             spacing="2"
                         ),
                         rx.vstack(
                             rx.box(
-                                rx.icon("zap", size=24, color=colors["accent"]),
+                                rx.icon("zap", size=[18, 20, 24], color=colors["accent"]),  # Responsive icon
                                 padding="0.5rem",
                                 background=f"{colors['accent']}20",
                                 border_radius="8px"
                             ),
-                            rx.text("Eficiencia", size="3", weight="bold", color=colors["dark"]),
+                            rx.text("Eficiencia", size=["2", "2", "3"], weight="bold", color=colors["dark"]),  # Responsive text
                             align="center",
                             spacing="2"
                         ),
-                        spacing="4",
-                        justify="start"
+                        spacing=["2", "3", "4"],  # Responsive spacing
+                        justify="start",
+                        flex_wrap="wrap"  # Permite que se envuelvan en móvil
                     ),
                     
                     align="start",
@@ -337,12 +346,12 @@ def about_section() -> rx.Component:
                         rx.image(
                             src="https://i.postimg.cc/5yWfQRwB/Imagen-Terrigov.png",
                             alt="TerriGov - Territorio Digital",
-                            width="450px",
-                            height="450px",
+                            width=["300px", "400px", "450px"],  # Responsive image size
+                            height=["300px", "400px", "450px"],  # Responsive image size
                             object_fit="contain",
                             border_radius="8px"
                         ),
-                        padding="3rem",
+                        padding=["2rem", "2.5rem", "3rem"],  # Responsive padding
                         background=f"linear-gradient(135deg, {colors['primary']}10, {colors['secondary']}10)",
                         border_radius="16px",
                         border=f"2px solid {colors['primary']}30",
@@ -352,35 +361,35 @@ def about_section() -> rx.Component:
                         align_items="center",
                         justify_content="center"
                     ),
-                    height="400px"
+                    height=["300px", "400px", "400px"]  # Responsive height
                 ),
                 
-                columns="2",
-                spacing="6",
+                columns=["1", "1", "2"],  # Responsive grid: 1 columna en móvil/tablet, 2 en desktop
+                spacing=["4", "5", "6"],  # Responsive spacing
                 align="center"
             ),
             max_width="1200px",
-            padding="4rem 2rem"
+            padding=["2rem 1rem", "3rem 1.5rem", "4rem 2rem"]  # Responsive padding
         ),
         id="sobre-nosotros",
         background=colors["light"]
     )
 
 def contact_section() -> rx.Component:
-    """Sección de contacto"""
+    """Sección de contacto - Responsive"""
     return rx.box(
         rx.container(
             rx.vstack(
                 rx.heading(
                     "Contacto",
-                    size="8",
+                    size=["6", "7", "8"],  # Responsive heading
                     color=colors["light"],
                     text_align="center",
                     margin_bottom="2rem"
                 ),
                 rx.text(
                     "¿Listo para transformar tu territorio? Contáctanos y descubre cómo podemos ayudarte",
-                    size="4",
+                    size=["3", "3", "4"],  # Responsive text
                     color=colors["light"],
                     text_align="center",
                     opacity="0.9",
@@ -389,41 +398,41 @@ def contact_section() -> rx.Component:
                 
                 rx.grid(
                     rx.vstack(
-                        rx.icon("mail", size=30, color=colors["accent"]),
-                        rx.text("Email", size="4", weight="bold", color=colors["light"]),
-                        rx.text("info@terrigov.co", size="3", color=colors["light"], opacity="0.8"),
+                        rx.icon("mail", size=[24, 27, 30], color=colors["accent"]),  # Responsive icon
+                        rx.text("Email", size=["3", "3", "4"], weight="bold", color=colors["light"]),  # Responsive text
+                        rx.text("info@terrigov.co", size=["2", "2", "3"], color=colors["light"], opacity="0.8"),  # Responsive text
                         spacing="2",
                         align="center"
                     ),
                     rx.vstack(
-                        rx.icon("message-circle", size=30, color=colors["accent"]),
-                        rx.text("WhatsApp", size="4", weight="bold", color=colors["light"]),
-                        rx.text("+57 320 780 3362", size="3", color=colors["light"], opacity="0.8"),
+                        rx.icon("message-circle", size=[24, 27, 30], color=colors["accent"]),  # Responsive icon
+                        rx.text("WhatsApp", size=["3", "3", "4"], weight="bold", color=colors["light"]),  # Responsive text
+                        rx.text("+57 320 780 3362", size=["2", "2", "3"], color=colors["light"], opacity="0.8"),  # Responsive text
                         spacing="2",
                         align="center"
                     ),
                     rx.vstack(
-                        rx.icon("map-pin", size=30, color=colors["accent"]),
-                        rx.text("Ubicación", size="4", weight="bold", color=colors["light"]),
-                        rx.text("Colombia", size="3", color=colors["light"], opacity="0.8"),
+                        rx.icon("map-pin", size=[24, 27, 30], color=colors["accent"]),  # Responsive icon
+                        rx.text("Ubicación", size=["3", "3", "4"], weight="bold", color=colors["light"]),  # Responsive text
+                        rx.text("Colombia", size=["2", "2", "3"], color=colors["light"], opacity="0.8"),  # Responsive text
                         spacing="2",
                         align="center"
                     ),
-                    columns="3",
-                    spacing="6",
+                    columns=["1", "3", "3"],  # Responsive grid: 1 columna en móvil, 3 en tablet/desktop
+                    spacing=["4", "5", "6"],  # Responsive spacing
                     margin_bottom="3rem"
                 ),
                 
                 rx.link(
                     rx.button(
                         rx.hstack(
-                            rx.icon("message-circle", size=24),
-                            rx.text("Iniciar Conversación", size="4", weight="medium"),
+                            rx.icon("message-circle", size=[18, 20, 24]),  # Responsive icon
+                            rx.text("Iniciar Conversación", size=["3", "3", "4"], weight="medium"),  # Responsive text
                             spacing="2",
                             align="center"
                         ),
-                        size="4",
-                        padding="1rem 2rem",
+                        size=["3", "3", "4"],  # Responsive button size
+                        padding=["0.75rem 1.5rem", "0.875rem 1.75rem", "1rem 2rem"],  # Responsive padding
                         background=colors["accent"],
                         color=colors["light"],
                         border="none",
@@ -439,50 +448,53 @@ def contact_section() -> rx.Component:
                     is_external=True
                 ),
                 
-                spacing="6",
+                spacing=["4", "5", "6"],  # Responsive spacing
                 align="center"
             ),
             max_width="1200px",
-            padding="4rem 2rem"
+            padding=["2rem 1rem", "3rem 1.5rem", "4rem 2rem"]  # Responsive padding
         ),
         id="contacto",
         background=f"linear-gradient(135deg, {colors['dark']} 0%, {colors['primary']} 100%)"
     )
 
 def footer() -> rx.Component:
-    """Pie de página"""
+    """Pie de página - Responsive"""
     return rx.box(
         rx.container(
             rx.vstack(
                 rx.hstack(
                     rx.text(
                         "© 2023 TerriGov S.A.S. - Innovación y Desarrollo para el Territorio",
-                        size="3",
-                        color=colors["gray"]
+                        size=["2", "2", "3"],  # Responsive text
+                        color=colors["gray"],
+                        text_align=["center", "center", "left"]  # Centrado en móvil
                     ),
                     rx.hstack(
                         rx.link(
-                            rx.icon("linkedin", size=20, color=colors["gray"]),
+                            rx.icon("linkedin", size=[16, 18, 20], color=colors["gray"]),  # Responsive icon
                             href="#",
                             _hover={"color": colors["primary"]}
                         ),
                         rx.link(
-                            rx.icon("instagram", size=20, color=colors["gray"]),
+                            rx.icon("instagram", size=[16, 18, 20], color=colors["gray"]),  # Responsive icon
                             href="#",
                             _hover={"color": colors["primary"]}
                         ),
                         spacing="3"
                     ),
-                    justify="between",
+                    justify=["center", "center", "between"],  # Centrado en móvil, entre en desktop
                     align="center",
                     width="100%",
-                    flex_wrap="wrap"
+                    flex_wrap="wrap",
+                    direction=["column", "column", "row"],  # Columna en móvil, fila en desktop
+                    spacing=["2", "2", "0"]  # Espaciado en móvil
                 ),
                 spacing="4",
                 align="center"
             ),
             max_width="1200px",
-            padding="2rem"
+            padding=["1rem", "1.5rem", "2rem"]  # Responsive padding
         ),
         background="#F8F9FA",
         border_top=f"1px solid {colors['gray']}30"
