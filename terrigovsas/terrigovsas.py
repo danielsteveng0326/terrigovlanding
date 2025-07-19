@@ -11,6 +11,15 @@ colors = {
     "gray": "#6C757D"
 }
 
+# Estado para el menú móvil
+class NavState(rx.State):
+    """Estado para controlar el menú de navegación móvil."""
+    is_mobile_menu_open: bool = False
+    
+    def toggle_mobile_menu(self):
+        """Alternar el estado del menú móvil."""
+        self.is_mobile_menu_open = not self.is_mobile_menu_open
+
 # Configuración de la aplicación
 config = rx.Config(
     app_name="terrigov_landing",
@@ -35,12 +44,12 @@ def navbar() -> rx.Component:
                 rx.image(
                     src="https://i.postimg.cc/PJgFKg6x/Icon-2-SVG.png",
                     alt="Logo de la empresa",
-                    width=rx.breakpoints(initial="40px", sm="45px", md="50px")
+                    width=rx.breakpoints(initial="35px", sm="42px", md="50px")
                 ),
                 rx.vstack(
                     rx.text(
                         "TerriGov S.A.S.",
-                        size=rx.breakpoints(initial="4", sm="5", md="6"),
+                        size=rx.breakpoints(initial="3", sm="5", md="6"),
                         weight="bold",
                         color=colors["dark"]
                     ),
@@ -58,7 +67,7 @@ def navbar() -> rx.Component:
                 align="center"
             ),
             
-            # Menú de navegación - Responsive
+            # Menú de navegación - Desktop
             rx.hstack(
                 rx.link("Inicio", href="#inicio", color=colors["dark"], _hover={"color": colors["primary"]}),
                 rx.link("Servicios", href="#servicios", color=colors["dark"], _hover={"color": colors["primary"]}),
@@ -68,17 +77,37 @@ def navbar() -> rx.Component:
                 display=rx.breakpoints(initial="none", sm="none", md="flex")
             ),
             
-            # Menú hamburguesa para móvil (placeholder)
+            # Menú hamburguesa para móvil
             rx.box(
-                rx.icon("menu", size=24, color=colors["dark"]),
+                rx.icon("menu", size=20, color=colors["dark"]),
                 display=rx.breakpoints(initial="block", sm="block", md="none"),
-                cursor="pointer"
+                cursor="pointer",
+                on_click=NavState.toggle_mobile_menu
             ),
             
             justify="between",
             align="center",
             width="100%"
         ),
+        
+        # Menú móvil desplegable
+        rx.cond(
+            NavState.is_mobile_menu_open,
+            rx.vstack(
+                rx.link("Inicio", href="#inicio", color=colors["dark"], _hover={"color": colors["primary"]}, padding="0.5rem"),
+                rx.link("Servicios", href="#servicios", color=colors["dark"], _hover={"color": colors["primary"]}, padding="0.5rem"),
+                rx.link("Sobre Nosotros", href="#sobre-nosotros", color=colors["dark"], _hover={"color": colors["primary"]}, padding="0.5rem"),
+                rx.link("Contacto", href="#contacto", color=colors["dark"], _hover={"color": colors["primary"]}, padding="0.5rem"),
+                spacing="2",
+                align="start",
+                width="100%",
+                padding="1rem",
+                background=colors["light"],
+                border_top=f"1px solid {colors['gray']}30",
+                display=rx.breakpoints(initial="flex", sm="flex", md="none")
+            )
+        ),
+        
         background=colors["light"],
         padding=rx.breakpoints(initial="0.5rem 1rem", sm="0.75rem 1.5rem", md="1rem 2rem"),
         box_shadow="0 2px 4px rgba(0,0,0,0.1)",
@@ -94,33 +123,47 @@ def hero_section() -> rx.Component:
             rx.vstack(
                 rx.heading(
                     "Transformamos Territorios con Tecnología",
-                    size=rx.breakpoints(initial="6", sm="8", md="9"),
+                    size=rx.breakpoints(initial="4", sm="7", md="9"),
                     color=colors["light"],
                     text_align="center",
                     font_weight="bold",
-                    line_height="1.2"
+                    line_height="1.1",
+                    font_size=rx.breakpoints(initial="1.5rem", sm="2.5rem", md="3rem"),
+                    padding_x=rx.breakpoints(initial="0.75rem", sm="1rem", md="2rem"),
+                    max_width=rx.breakpoints(initial="100%", sm="90%", md="80%"),
+                    margin_x="auto"
                 ),
                 rx.text(
                     "Soluciones inteligentes para la gestión pública",
-                    size=rx.breakpoints(initial="3", sm="4", md="5"),
+                    size=rx.breakpoints(initial="2", sm="4", md="5"),
                     color=colors["light"],
                     text_align="center",
-                    opacity="0.9"
+                    opacity="0.9",
+                    padding_x=rx.breakpoints(initial="1rem", sm="1.5rem", md="2rem"),
+                    max_width=rx.breakpoints(initial="95%", sm="85%", md="75%"),
+                    margin_x="auto"
                 ),
                 rx.link(
                     rx.button(
                         rx.hstack(
-                            rx.icon("message-circle", size=20),
+                            rx.icon("message-circle", size=14),
+                            rx.text(
+                                "Habla con nosotros", 
+                                size=rx.breakpoints(initial="2", sm="3", md="4"), 
+                                weight="medium",
+                                display=rx.breakpoints(initial="block", sm="none", md="none")
+                            ),
                             rx.text(
                                 "Habla con nosotros por WhatsApp", 
-                                size=rx.breakpoints(initial="3", sm="3", md="4"), 
-                                weight="medium"
+                                size=rx.breakpoints(initial="2", sm="3", md="4"), 
+                                weight="medium",
+                                display=rx.breakpoints(initial="none", sm="block", md="block")
                             ),
                             spacing="2",
                             align="center"
                         ),
-                        size=rx.breakpoints(initial="3", sm="3", md="4"),
-                        padding=rx.breakpoints(initial="0.75rem 1.5rem", sm="0.875rem 1.75rem", md="1rem 2rem"),
+                        size=rx.breakpoints(initial="2", sm="3", md="4"),
+                        padding=rx.breakpoints(initial="0.6rem 1rem", sm="0.875rem 1.5rem", md="1rem 2rem"),
                         background=colors["accent"],
                         color=colors["light"],
                         border="none",
@@ -130,16 +173,20 @@ def hero_section() -> rx.Component:
                             "transform": "translateY(-2px)",
                             "box_shadow": "0 8px 25px rgba(0,210,158,0.3)"
                         },
-                        transition="all 0.3s ease"
+                        transition="all 0.3s ease",
+                        white_space="nowrap"
                     ),
                     href="https://wa.me/573207803362",
                     is_external=True
                 ),
-                spacing=rx.breakpoints(initial="4", sm="5", md="6"),
+                spacing=rx.breakpoints(initial="3", sm="5", md="6"),
                 align="center",
-                padding=rx.breakpoints(initial="2rem 1rem", sm="3rem 1.5rem", md="4rem 2rem")
+                padding=rx.breakpoints(initial="1.5rem 0.5rem", sm="3rem 1.5rem", md="4rem 2rem"),
+                width="100%"
             ),
-            max_width="1200px"
+            max_width="1200px",
+            padding_x=rx.breakpoints(initial="0.25rem", sm="1rem", md="2rem"),
+            width="100%"
         ),
         id="inicio",
         background=f"linear-gradient(135deg, {colors['primary']} 0%, {colors['secondary']} 100%)",
