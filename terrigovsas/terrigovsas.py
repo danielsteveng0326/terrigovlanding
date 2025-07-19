@@ -11,15 +11,6 @@ colors = {
     "gray": "#6C757D"
 }
 
-# Estado para el menú móvil
-class NavState(rx.State):
-    """Estado para controlar el menú de navegación móvil."""
-    is_mobile_menu_open: bool = False
-    
-    def toggle_mobile_menu(self):
-        """Alternar el estado del menú móvil."""
-        self.is_mobile_menu_open = not self.is_mobile_menu_open
-
 # Configuración de la aplicación
 config = rx.Config(
     app_name="terrigov_landing",
@@ -77,35 +68,26 @@ def navbar() -> rx.Component:
                 display=rx.breakpoints(initial="none", sm="none", md="flex")
             ),
             
-            # Menú hamburguesa para móvil
-            rx.box(
-                rx.icon("menu", size=20, color=colors["dark"]),
-                display=rx.breakpoints(initial="block", sm="block", md="none"),
-                cursor="pointer",
-                on_click=NavState.toggle_mobile_menu
+            # Links directos para móvil (simplificado)
+            rx.hstack(
+                rx.link(
+                    rx.icon("phone", size=18, color=colors["primary"]),
+                    href="https://wa.me/573207803362",
+                    is_external=True,
+                    _hover={"color": colors["secondary"]}
+                ),
+                rx.link(
+                    rx.icon("mail", size=18, color=colors["primary"]),
+                    href="#contacto",
+                    _hover={"color": colors["secondary"]}
+                ),
+                spacing="3",
+                display=rx.breakpoints(initial="flex", sm="flex", md="none")
             ),
             
             justify="between",
             align="center",
             width="100%"
-        ),
-        
-        # Menú móvil desplegable
-        rx.cond(
-            NavState.is_mobile_menu_open,
-            rx.vstack(
-                rx.link("Inicio", href="#inicio", color=colors["dark"], _hover={"color": colors["primary"]}, padding="0.5rem"),
-                rx.link("Servicios", href="#servicios", color=colors["dark"], _hover={"color": colors["primary"]}, padding="0.5rem"),
-                rx.link("Sobre Nosotros", href="#sobre-nosotros", color=colors["dark"], _hover={"color": colors["primary"]}, padding="0.5rem"),
-                rx.link("Contacto", href="#contacto", color=colors["dark"], _hover={"color": colors["primary"]}, padding="0.5rem"),
-                spacing="2",
-                align="start",
-                width="100%",
-                padding="1rem",
-                background=colors["light"],
-                border_top=f"1px solid {colors['gray']}30",
-                display=rx.breakpoints(initial="flex", sm="flex", md="none")
-            )
         ),
         
         background=colors["light"],
