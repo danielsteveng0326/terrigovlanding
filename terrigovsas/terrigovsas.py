@@ -378,7 +378,7 @@ def about_section() -> rx.Component:
                 rx.box(
                     rx.box(
                         rx.image(
-                            src="https://i.postimg.cc/5yWfQRwB/Imagen-Terrigov.png",
+                            src="https://i.postimg.cc/MGCkv2tb/Pantalla-Civi.png",
                             alt="TerriGov - Territorio Digital",
                             width=rx.breakpoints(initial="300px", sm="400px", md="450px"),
                             height=rx.breakpoints(initial="300px", sm="400px", md="450px"),
